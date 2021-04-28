@@ -1,0 +1,27 @@
+syntax="proto3";
+
+message GetCommittedArgs {
+};
+
+message Empty {
+};
+
+message MaybeValue {
+    bool available = 1;
+    string content = 2;
+};
+
+service Worker {
+    /* Mandatory methods: */
+        /* return the currently committed value, if it is known,
+           or indicate that it is unavailable */
+    rpc GetCommitted(GetCommittedArgs) returns (MaybeValue) {}
+
+    /* Method you are likely to change used by base implementation: */
+    rpc SetValue(MaybeValue) returns (Empty) {}
+};
+
+service Coordinator {
+    /* Mandatory methods: */
+    rpc SetValue(MaybeValue) returns (Empty) {}
+}

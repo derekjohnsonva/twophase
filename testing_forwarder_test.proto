@@ -1,0 +1,10 @@
+syntax="proto3";
+
+message TestMessage {
+    string value = 1;
+}
+
+service TestService {
+    rpc MethodA(TestMessage) returns (TestMessage) {}
+    rpc MethodB(TestMessage) returns (TestMessage) {}
+}
